@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package users.service.v1;
+
+option go_package = "github.com/onemgvv/grpc-contract/gen/go/users/service/v1;user_service";
+
+import "google/api/annotations.proto";
+import "users/model/v1/user.proto";
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+    option (google.api.http) = {
+      post: "/v1/users",
+      body: "*"
+    };
+  }
+
+  rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
+    option (google.api.http) = {
+      get: "/v1/users",
+    };
+  }
+
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
+    option (google.api.http) = {
+      patch: "/v1/users/{id}",
+      body: "*"
+    };
+  }
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+  int64 age = 3;
+}
+
+message CreateUserResponse {
+  model.v1.User user = 1;
+}
+
+message GetUsersRequest {
+  optional int64 age = 1;
+}
+
+message GetUsersResponse {
+  repeated model.v1.User user = 1;
+}
+
+message UpdateUserRequest {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+  int64 age = 4;
+}
+
+message UpdateUserResponse {
+  model.v1.User user = 1;
+}
