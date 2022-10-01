@@ -44,7 +44,7 @@ message GetUsersRequest {
 }
 
 message GetUsersResponse {
-  repeated model.v1.User user = 1;
+  repeated model.v1.User users = 1;
 }
 
 message UpdateUserRequest {

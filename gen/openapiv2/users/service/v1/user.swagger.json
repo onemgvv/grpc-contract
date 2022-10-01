@@ -185,7 +185,7 @@
     "v1GetUsersResponse": {
       "type": "object",
       "properties": {
-        "user": {
+        "users": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1User"
